@@ -1,0 +1,25 @@
+parameters:
+    # Account
+    bsp_accounting.account.class: BSP\AccountingBunle\Document\Account
+    bsp_accounting.account_manager.class: BSP\AccountingBunle\Document\AccountManager
+
+    # Financial Transaction
+    bsp_accounting.financial_transaction.class: BSP\AccountingBunle\Document\FinacialTransaction
+    bsp_accounting.financial_transaction_manager.class: BSP\AccountingBunle\Document\FinacialTransactionManager
+
+
+services:
+    # Account
+    bsp_accounting.account_manager:
+        class: %bsp_accounting.account_manager.class%
+        arguments:
+            - @doctrine.odm.mongodb.document_manager
+            - %bsp_accounting.account.class%
+            - @bsp_accounting.id_generator_provider
+
+     # Financial Transaction
+    bsp_accounting.financial_transaction_manager:
+        class: %bsp_accounting.financial_transaction_manager.class%
+        arguments:
+            - @doctrine.odm.mongodb.document_manager
+            - %bsp_accounting.financial_transaction.class%

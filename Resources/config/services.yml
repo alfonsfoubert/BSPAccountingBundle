@@ -1,0 +1,32 @@
+parameters:
+
+    # Default Account Handler
+    bsp_accounting.default_account_handler.class: BSP\AccountingBundle\Handler\DefaultAccountHandler
+
+    # Encryption
+    bsp_accounting.encryption_service.class: BSP\AccountingBundle\Cryptography\MCryptEncryptionService
+    bsp_accounting.encryption_service.secret: ~
+    bsp_accounting.encryption_service.cipher: rijndael-256
+    bsp_accounting.encryption_service.mode: ctr
+
+    # ID Generator Provider
+    bsp_accounting.id_generator_provider.class: BSP\AccountingBundle\Provider\AccountIdGeneratorProvider
+
+
+services:
+
+    # Default Account Handler
+    bsp_accounting.account_handler.default:
+        class: %bsp_accounting.default_account_handler.class%
+
+    # Encryption
+    bsp_accounting.encryption_service:
+        class: %bsp_accounting.encryption_service.class%
+        arguments:
+            - %bsp_accounting.encryption_service.secret%
+            - %bsp_accounting.encryption_service.cipher%
+            - %bsp_accounting.encryption_service.mode%
+
+    # ID Generator Provider
+    bsp_accounting.id_generator_provider:
+        class: %bsp_accounting.id_generator_provider.class%
