@@ -1,6 +1,6 @@
 <?php
 
-namespace BSP\AccountingBundle\Type;
+namespace BSP\AccountingBundle\Model;
 
 use BSP\AccountingBundle\Model\ExtendedDataInterface;
 

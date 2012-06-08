@@ -3,11 +3,12 @@
 namespace BSP\AccountingBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use BSP\AccountingBundle\Model\FinancialTransaction as BaseFinancialTransaction;
 
 /**
  * @MongoDB\Document(collection="transactions")
  */
-class FinancialTransaction
+class FinancialTransaction extends BaseFinancialTransaction
 {	
 	/**
 	 * @MongoDB\Id
@@ -40,7 +41,7 @@ class FinancialTransaction
 	protected $accountingEntries;
 	
 	/** 
-	 * @MongoDB\String
+	 * @MongoDB\Field(type="EncryptedData" )
 	 */
 	protected $extendedData;
 }

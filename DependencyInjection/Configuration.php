@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
 						->thenInvalid('The %s driver is not supported')
 					->end()
 				->end()
+				->scalarNode('secret')->isRequired()->cannotBeEmpty()->end()
         	->end();
         
         $this->addAccountSection($rootNode);

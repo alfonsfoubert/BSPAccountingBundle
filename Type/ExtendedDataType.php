@@ -1,15 +1,13 @@
 <?php
 
-namespace BSP\AccountingBundle\Entity;
+namespace BSP\AccountingBundle\Type;
 
 use BSP\AccountingBundle\Cryptography\EncryptionServiceInterface;
-use BSP\AccountingBundle\Model\ExtendedData;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
-use Doctrine\DBAL\Types\ObjectType;
+use Doctrine\ODM\MongoDB\Mapping\Types\Type;
 
-
-class ExtendedDataType extends ObjectType
+class ExtendedDataType extends Type
 {
     const NAME = 'EncryptedData';
 
@@ -25,7 +23,7 @@ class ExtendedDataType extends ObjectType
         return self::$encryptionService;
     }
 
-    public function convertToDatabaseValue($extendedData, AbstractPlatform $platform)
+    public function convertToDatabaseValue($extendedData)
     {
         if (null === $extendedData) {
             return null;
@@ -46,12 +44,12 @@ class ExtendedDataType extends ObjectType
             }
         }
 
-        return parent::convertToDatabaseValue($data, $platform);
+        return $data;
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value)
     {
-        $data = parent::convertToPHPValue($value, $platform);
+        $data = $value;
 
         if (null === $data) {
             return null;

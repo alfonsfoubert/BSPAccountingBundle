@@ -2,6 +2,8 @@
 
 namespace BSP\AccountingBundle\Model;
 
+use BSP\AccountingBundle\Model\ExtendedDataInterface;
+
 interface FinancialTransactionInterface
 {
     const STATE_CANCELED = 1;
@@ -23,5 +25,5 @@ interface FinancialTransactionInterface
     function setAccountingEntries($accountingEntries);
     function addAcountingEntry( $accountingEntry );
     function getExtendedData();
-    function setExtendedData($extendedData);
+    function setExtendedData( ExtendedDataInterface $extendedData );
 }
