@@ -26,4 +26,12 @@ abstract class AbstractAccountProvider implements AccountProviderInterface
 		}
 		return $this->handlers[$type];
 	}
+	
+	function listAccountHandlers()
+	{
+		if (isset($this->handlers)) {
+			return array_keys($this->handlers);
+		}
+		return array();
+	}
 }

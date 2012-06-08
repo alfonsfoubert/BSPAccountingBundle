@@ -8,7 +8,7 @@ interface AccountManagerInterface
 {
 	function getBalance( $account );
 	function getClass();
-	function createAccount( $type = 'default', array $options = null );
+	function createAccount( $generator = 'default', array $options = null );
 	function findAccountBy(array $criteria);
 	function findAccountById( $id );
 	function findAccounts();

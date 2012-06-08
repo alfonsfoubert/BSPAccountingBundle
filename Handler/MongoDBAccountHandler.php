@@ -4,15 +4,15 @@ namespace BSP\AccountingBundle\Handler;
 
 use BSP\AccountingBundle\Handler\AbstractAccountHandler;
 
-class DefaultAccountHandler extends AbstractAccountHandler
+class MongoDBAccountHandler extends AbstractAccountHandler
 {
 	public function generateId( array $options = null )
 	{
-		return uniqid();
+		return new \MongoId();
 	}
 	
 	public function getType()
 	{
-		return 'default';
+		return 'mongodb';
 	}
 }

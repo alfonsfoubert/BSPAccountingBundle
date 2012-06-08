@@ -14,15 +14,22 @@ abstract class AccountManager implements AccountManagerInterface
 		$this->accountIdProvider = $accountIdProvider;
 	}
 	
-	public function createAccount( $type = 'default', array $options = null )
+	public function createAccount( $generator = 'default', array $options = null )
 	{
-		$account = new $this->getClass();
-		$account->setId( $this->accountIdProvider->generateId( $type, $options ) );
+		$class = $this->getClass();
+		$account = new $class();
+		$account->setId( $this->accountIdProvider->generateId( $generator, $options ) );
 		return $account;
 	}
 	
 	public function findAccountById( $id )
 	{
 		return $this->findAccountBy( array( 'id' => $id ) );
+	}
+	
+	
+	public function getIdGeneratorHandlers()
+	{
+		return $this->accountIdProvider->listAccountHandlers();
 	}
 }

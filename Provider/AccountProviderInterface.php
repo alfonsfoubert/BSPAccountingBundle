@@ -7,4 +7,5 @@ use BSP\AccountingBundle\Handler\AccountHandlerInterface;
 interface AccountProviderInterface
 {
 	function addAccountHandler(AccountHandlerInterface $handler);
+	function listAccountHandlers();
 }

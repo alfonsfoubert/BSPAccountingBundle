@@ -26,7 +26,13 @@ class BalanceCommand extends ContainerAwareCommand
 		$account_id = $input->getArgument('account');
 		$account_manager = $this->getContainer()->get('bsp_accounting.account_manager');
 		$account = $account_manager->findAccountById( $account_id );
-		$balance = $account_manager->getBalance($account);
-		$output->writeln('<info>'.$balance.'</info>');
+		
+		if ( ! $account)
+		{
+			$output->writeln( '<error>Account '.$account_id.' not found</error>' );
+		}
+		
+		// $balance = $account_manager->getBalance($account);
+		// $output->writeln('<info>'.$balance.'</info>');
 	}
 }

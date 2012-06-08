@@ -26,6 +26,8 @@ class BSPAccountingExtension extends Extension
         $loader->load(sprintf('%s.yml', $config['db_driver']));
         $loader->load('services.yml');
         
+        $this->setType($config['db_driver']);
+        
         if (isset($config['account'])) {
         	$this->configureAccount($config['account'], $container);
         }
@@ -36,5 +38,17 @@ class BSPAccountingExtension extends Extension
         if (isset($config['account'])) {
             $container->setParameter('bsp_accounting.account.class', $config['class']);
         }
+    }
+    
+    protected function setType( $driver )
+    {
+    	switch ($driver)
+    	{
+    		case 'mongodb':
+    			\Doctrine\ODM\MongoDB\Mapping\Types\Type::addType( 'EncryptedData', 'BSP\AccountingBundle\Type\ExtendedDataType' );
+    			break;
+    		default:
+    			break;
+    	}
     }
 }

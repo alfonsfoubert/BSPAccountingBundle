@@ -12,6 +12,9 @@ parameters:
     # ID Generator Provider
     bsp_accounting.id_generator_provider.class: BSP\AccountingBundle\Provider\AccountIdGeneratorProvider
 
+    # Default ID Generator Handler
+    bsp_accounting.default_handler.class: BSP\AccountingBundle\Handler\DefaultAccountHandler
+
 
 services:
 
@@ -30,3 +33,9 @@ services:
     # ID Generator Provider
     bsp_accounting.id_generator_provider:
         class: %bsp_accounting.id_generator_provider.class%
+
+    # Default ID Generator Handler
+    bsp_accounting.default_handler:
+        class: %bsp_accounting.default_handler.class%
+        tags:
+            - { name: bsp_accounting.account_handler }
