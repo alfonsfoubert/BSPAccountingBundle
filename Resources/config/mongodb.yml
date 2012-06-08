@@ -4,8 +4,8 @@ parameters:
     bsp_accounting.account_manager.class: BSP\AccountingBundle\Document\AccountManager
 
     # Financial Transaction
-    bsp_accounting.financial_transaction.class: BSP\AccountingBundle\Document\FinacialTransaction
-    bsp_accounting.financial_transaction_manager.class: BSP\AccountingBundle\Document\FinacialTransactionManager
+    bsp_accounting.financial_transaction.class: BSP\AccountingBundle\Document\FinancialTransaction
+    bsp_accounting.financial_transaction_manager.class: BSP\AccountingBundle\Document\FinancialTransactionManager
 
     # MongoDB ID Generator Handler
     bsp_accounting.mongodb_handler.class: BSP\AccountingBundle\Handler\MongoDBAccountHandler
@@ -17,9 +17,10 @@ services:
         arguments:
             - @doctrine.odm.mongodb.document_manager
             - %bsp_accounting.account.class%
+            - @bsp_accounting.financial_transaction_manager
             - @bsp_accounting.id_generator_provider
 
-     # Financial Transaction
+    # Financial Transaction
     bsp_accounting.financial_transaction_manager:
         class: %bsp_accounting.financial_transaction_manager.class%
         arguments:

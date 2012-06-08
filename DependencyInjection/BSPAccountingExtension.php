@@ -26,7 +26,7 @@ class BSPAccountingExtension extends Extension
         $loader->load(sprintf('%s.yml', $config['db_driver']));
         $loader->load('services.yml');
         
-        $this->setType($config['db_driver']);
+        $this->setTypes($config['db_driver']);
         
         if (isset($config['account'])) {
         	$this->configureAccount($config['account'], $container);
@@ -40,7 +40,7 @@ class BSPAccountingExtension extends Extension
         }
     }
     
-    protected function setType( $driver )
+    protected function setTypes( $driver )
     {
     	switch ($driver)
     	{

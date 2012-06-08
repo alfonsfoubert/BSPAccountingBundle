@@ -11,9 +11,9 @@ class AccountManager extends AbstractAccountManager
 	protected $repository;
 	protected $class;
 	
-	public function __construct( $dm, $accountClass, $accountIdProvider )
+	public function __construct( $dm, $accountClass, $transactionManager, $accountIdProvider )
 	{
-		parent::__construct( $accountIdProvider );
+		parent::__construct( $transactionManager, $accountIdProvider );
 		
 		$this->dm = $dm;
 		$this->repository = $dm->getRepository($accountClass);
@@ -46,11 +46,7 @@ class AccountManager extends AbstractAccountManager
 	
 	public function getBalance( $account )
 	{
-		$this->dm->getConnection()->connect();
-		var_dump($this->dm->getConfiguration());
-		return 0;
-		$db = $this->dm->getConnection()->__get($parameters['mongo_database']);
-		$result = $db->execute( 'eval(\'balance("'.$account->getId().'")\')' );
+		$result = $this->dm->getDocumentDatabase($this->transactionManager->getClass())->execute('eval(\'balance("'.$account->getId().'")\')');
 		if ($result['ok'] == 1)
 		{
 			return $result['retval'];
@@ -59,6 +55,5 @@ class AccountManager extends AbstractAccountManager
 		{
 			return $result['errmsg'];
 		}
-		return 0;
 	}
 }

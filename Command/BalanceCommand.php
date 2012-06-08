@@ -1,7 +1,5 @@
 <?php
 
-// src/FrontEnd/AccountBundle/Command/BalanceCommand.php
-
 namespace BSP\AccountingBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -32,7 +30,7 @@ class BalanceCommand extends ContainerAwareCommand
 			$output->writeln( '<error>Account '.$account_id.' not found</error>' );
 		}
 		
-		// $balance = $account_manager->getBalance($account);
-		// $output->writeln('<info>'.$balance.'</info>');
+		$balance = $account_manager->getBalance($account);
+		$output->writeln('<info>'.$balance.'</info>');
 	}
 }

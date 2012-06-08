@@ -3,15 +3,18 @@
 namespace BSP\AccountingBundle\Model;
 
 use BSP\AccountingBundle\Model\AccountManagerInterface;
+use BSP\AccountingBundle\Model\TransactionManagerInterface;
 use BSP\AccountingBundle\Provider\AccountIdGeneratorProvider;
 
 abstract class AccountManager implements AccountManagerInterface
 {
+	protected $transactionManager;
 	protected $accountIdProvider;
 	
-	public function __construct( AccountIdGeneratorProvider $accountIdProvider )
+	public function __construct( FinancialTransactionManagerInterface $transactionManager, AccountIdGeneratorProvider $accountIdProvider )
 	{
-		$this->accountIdProvider = $accountIdProvider;
+		$this->transactionManager = $transactionManager;
+		$this->accountIdProvider  = $accountIdProvider;
 	}
 	
 	public function createAccount( $generator = 'default', array $options = null )

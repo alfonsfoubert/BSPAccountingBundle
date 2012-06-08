@@ -3,7 +3,6 @@
 namespace BSP\AccountingBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-use BSP\AccountingBundle\Type\ExtendedDataType;
 
 /**
  * @MongoDB\Document(collection="transactions")
