@@ -10,6 +10,7 @@ class Account implements AccountInterface
 	protected $name;
 	protected $status;
 	protected $createdAt;
+	protected $units;
 	
 	public function getId() 
 	{
@@ -53,5 +54,15 @@ class Account implements AccountInterface
 	public function getCreatedAt()
 	{
 		return $this->createdAt;
+	}
+	
+	public function getUnits()
+	{
+		return $this->units;
+	}
+	
+	public function setUnits($units)
+	{
+		$this->units = $units;
 	}
 }

@@ -8,7 +8,7 @@ class MongoDBAccountHandler extends AbstractAccountHandler
 {
 	public function generateId( array $options = null )
 	{
-		return new \MongoId();
+		return (string) new \MongoId();
 	}
 	
 	public function getType()

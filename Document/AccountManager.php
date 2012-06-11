@@ -10,10 +10,11 @@ class AccountManager extends AbstractAccountManager
 	protected $dm;
 	protected $repository;
 	protected $class;
+	protected $transactionClass;
 	
-	public function __construct( $dm, $accountClass, $transactionManager, $accountIdProvider )
+	public function __construct( $dm, $accountClass, $accountIdProvider )
 	{
-		parent::__construct( $transactionManager, $accountIdProvider );
+		parent::__construct( $accountIdProvider );
 		
 		$this->dm = $dm;
 		$this->repository = $dm->getRepository($accountClass);
@@ -44,9 +45,9 @@ class AccountManager extends AbstractAccountManager
 		}
 	}
 	
-	public function getBalance( $account )
+	public function balance( $account, $repository )
 	{
-		$result = $this->dm->getDocumentDatabase($this->transactionManager->getClass())->execute('eval(\'balance("'.$account->getId().'")\')');
+		$result = $this->dm->getDocumentDatabase( $repository )->execute('eval(\'balance("'.$account->getId().'")\')');
 		if ($result['ok'] == 1)
 		{
 			return $result['retval'];

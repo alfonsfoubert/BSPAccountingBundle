@@ -19,8 +19,6 @@ interface AccountingEntryInterface
 	function setAccount($account);
 	function getAmount();
 	function setAmount($amount);
-	function getUnits();
-	function setUnits($units);
 	function getDescription();
 	function setDescription($description);
 	function getTrackingId();

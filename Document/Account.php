@@ -26,6 +26,11 @@ class Account extends BaseAccount
 	protected $status;
 	
 	/**
+	 * @MongoDB\String
+	 */
+	protected $units;
+	
+	/**
 	 * @MongoDB\Date
 	 */
 	protected $createdAt;

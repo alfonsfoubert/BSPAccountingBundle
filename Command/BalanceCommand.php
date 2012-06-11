@@ -8,8 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
-use BSP\AccountingBundle\Model\ExtendedData;
+use BSP\AccountingBundle\Model\AccountingEntryInterface;
 
 class BalanceCommand extends ContainerAwareCommand
 {
@@ -24,16 +23,17 @@ class BalanceCommand extends ContainerAwareCommand
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$account_id = $input->getArgument('account');
-		$account_manager = $this->getContainer()->get('bsp_accounting.account_manager');
-		$account = $account_manager->findAccountById( $account_id );
-		
-		if ( ! $account)
+		$account = $input->getArgument('account');
+        
+		try
 		{
-			$output->writeln( '<error>Account '.$account_id.' not found</error>' );
+			$manipulator = $this->getContainer()->get('bsp_accounting.manipulator');
+			$balance = $manipulator->balance($account);
+			$output->writeln('<info>'.$balance.'</info>');
 		}
-		
-		$balance = $account_manager->getBalance($account);
-		$output->writeln('<info>'.$balance.'</info>');
+		catch ( \Exception $e )
+		{
+			$output->writeln( '<error>'.$e->getMessage().'</error>' );
+		}
 	}
 }

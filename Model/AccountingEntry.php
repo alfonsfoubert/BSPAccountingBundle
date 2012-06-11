@@ -8,7 +8,6 @@ class AccountingEntry implements AccountingEntryInterface
 {
 	protected $account;
 	protected $amount;
-	protected $units;
 	protected $description;
 	protected $trackingId;
 	protected $transactionType;
@@ -51,16 +50,6 @@ class AccountingEntry implements AccountingEntryInterface
 	public function setAmount($amount) 
 	{
 		$this->amount = $amount;
-	}
-
-	public function getUnits() 
-	{
-		return $this->units;
-	}
-
-	public function setUnits($units) 
-	{
-		$this->units = $units;
 	}
 
 	public function getDescription() 

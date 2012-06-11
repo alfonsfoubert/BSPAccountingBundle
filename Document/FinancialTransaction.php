@@ -44,4 +44,11 @@ class FinancialTransaction extends BaseFinancialTransaction
 	 * @MongoDB\Field(type="EncryptedData" )
 	 */
 	protected $extendedData;
+	
+	/** @MongoDB\PreUpdate */
+	public function preUpdateTransaction()
+	{
+		parent::incrementUpdatedAt();
+	}
+	
 }

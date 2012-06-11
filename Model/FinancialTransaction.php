@@ -28,36 +28,34 @@ class FinancialTransaction implements FinancialTransactionInterface
 		return $this->id;
 	}
 
-	public function setCreatedAt() 
-	{
-		if (null === $this->createdAt) 
-		{
-			$this->createdAt = new \DateTime();
-		}
-		$this->updatedAt = new \DateTime();
-	}
-
-	public function incrementUpdatedAt() 
-	{
-		$this->updatedAt = new \DateTime();
-	}
-
 	public function getState() 
 	{
 		return $this->state;
 	}
 
-	public function setState($state) 
+	public function setState( $state )
 	{
 		$this->state = $state;
 	}
-
+	
+	public function close( $success )
+	{
+		$this->checkStatus();
+		$this->state = $success? self::STATE_SUCCESS : self::STATE_FAILED;
+	}
+	
+	public function cancel()
+	{
+		$this->checkStatus();
+		$this->state = self::STATE_CANCELED;
+	}
+	
 	public function getReferenceNumber() 
 	{
 		return $this->referenceNumber;
 	}
 
-	public function setReferenceNumber($referenceNumber) 
+	public function setReferenceNumber( $referenceNumber ) 
 	{
 		$this->referenceNumber = $referenceNumber;
 	}
@@ -67,23 +65,34 @@ class FinancialTransaction implements FinancialTransactionInterface
 		return $this->createdAt;
 	}
 
+	public function setCreatedAt( $createdAt )
+	{
+		$this->createdAt = $createdAt;
+	}
+	
 	public function getUpdatedAt() 
 	{
 		return $this->updatedAt;
 	}
 
+	public function setUpdatedAt( $updatedAt )
+	{
+		$this->updatedAt = $updatedAt;
+	}
+	
 	public function getAccountingEntries() 
 	{
 		return $this->accountingEntries;
 	}
 
-	public function setAccountingEntries($accountingEntries) 
+	public function setAccountingEntries( $entries )
 	{
-		$this->accountingEntries = $accountingEntries;
+		$this->accountingEntries = $entries;
 	}
-
+	
 	public function addAcountingEntry( $accountingEntry )
 	{
+		$this->checkStatus();
 		$this->accountingEntries[] = $accountingEntry;
 	}
 	
@@ -95,5 +104,18 @@ class FinancialTransaction implements FinancialTransactionInterface
 	public function setExtendedData(ExtendedDataInterface $extendedData)
 	{
 		$this->extendedData = $extendedData;
+	}
+	
+	public function incrementUpdatedAt()
+	{
+		$this->updatedAt = new \DateTime();
+	}
+	
+	protected function checkStatus()
+	{
+		if ( ! ($this->state == self::STATE_NEW) )
+		{
+			Throw new \Exception( 'This transaction is not new, you can\'t edit' );
+		}
 	}
 }

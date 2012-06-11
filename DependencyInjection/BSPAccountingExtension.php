@@ -6,7 +6,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
-use BSP\AccountingBundle\Type\ExtendedDataType;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -49,9 +48,9 @@ class BSPAccountingExtension extends Extension
     {
     	if ($config['db_driver'] == 'mongodb')
     	{
-	    	if (false === \Doctrine\ODM\MongoDB\Mapping\Types\Type::hasType(ExtendedDataType::NAME)) {
-	    		ExtendedDataType::setEncryptionService($container->get('bsp_accounting.encryption_service'));
-	    		\Doctrine\ODM\MongoDB\Mapping\Types\Type::addType(ExtendedDataType::NAME, 'BSP\AccountingBundle\Type\ExtendedDataType');
+	    	if (false === \Doctrine\ODM\MongoDB\Mapping\Types\Type::hasType(\BSP\AccountingBundle\Type\MongoDB\ExtendedDataType::NAME)) {
+	    		\BSP\AccountingBundle\Type\MongoDB\ExtendedDataType::setEncryptionService($container->get('bsp_accounting.encryption_service'));
+	    		\Doctrine\ODM\MongoDB\Mapping\Types\Type::addType(\BSP\AccountingBundle\Type\MongoDB\ExtendedDataType::NAME, 'BSP\AccountingBundle\Type\MongoDB\ExtendedDataType');
 	    	}    		
     	}
     }

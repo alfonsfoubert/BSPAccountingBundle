@@ -13,7 +13,6 @@ interface FinancialTransactionInterface
     const STATE_SUCCESS  = 5;
 
     function getId();
-    function setCreatedAt();
     function incrementUpdatedAt();
     function getState();
     function setState($state);

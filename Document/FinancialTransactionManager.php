@@ -10,18 +10,27 @@ class FinancialTransactionManager extends AbstractFinancialTransacionManager
 	protected $dm;
 	protected $repository;
 	protected $class;
+	protected $accountManager;
+	protected $entryClass;
 	
-	public function __construct( $dm, $class )
+	public function __construct( $dm, $class, $entryClass, $accountManager )
 	{
 		$this->dm = $dm;
 		$this->repository = $dm->getRepository($class);
 		$metadata = $dm->getClassMetadata($class);
 		$this->class = $metadata->name;
+		$this->accountManager = $accountManager;
+		$this->entryClass = $entryClass;
 	}
 	
 	public function getClass()
 	{
 		return $this->class;
+	}
+	
+	public function getEntryClass()
+	{
+		return $this->entryClass;
 	}
 	
 	public function findTransactionBy( array $criteria )
@@ -47,5 +56,8 @@ class FinancialTransactionManager extends AbstractFinancialTransacionManager
 		}
 	}
 	
-	
+	public function checkTransactions()
+	{
+		// @todo Checks the sum of the all transactions made by Script
+	}
 }

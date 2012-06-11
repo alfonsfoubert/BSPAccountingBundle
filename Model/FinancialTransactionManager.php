@@ -3,6 +3,7 @@
 namespace BSP\AccountingBundle\Model;
 
 use BSP\AccountingBundle\Model\FinancialTransactionManagerInterface;
+use BSP\AccountingBundle\Model\FinancialTransactionInterface;
 
 abstract class FinancialTransactionManager implements FinancialTransactionManagerInterface
 {
@@ -16,11 +17,10 @@ abstract class FinancialTransactionManager implements FinancialTransactionManage
 		return $this->findBy( array( 'account.$id' => $account_id ), $orderBy, $limit, $offset );
 	}
 	
-	function createTransaction( $referenceNumber )
+	function createTransaction()
 	{
 		$class = $this->getClass();
 		$transaction = new $class();
-		$transaction->setReferenceNumber( $referenceNumber );
 		return $transaction;
 	}
 }

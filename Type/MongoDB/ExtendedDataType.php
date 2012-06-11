@@ -1,6 +1,6 @@
 <?php
 
-namespace BSP\AccountingBundle\Type;
+namespace BSP\AccountingBundle\Type\MongoDB;
 
 use BSP\AccountingBundle\Cryptography\EncryptionServiceInterface;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
