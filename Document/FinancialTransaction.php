@@ -41,7 +41,7 @@ class FinancialTransaction extends BaseFinancialTransaction
 	protected $accountingEntries;
 	
 	/** 
-	 * @MongoDB\Field(type="EncryptedData" )
+	 * @MongoDB\Hash
 	 */
 	protected $extendedData;
 	

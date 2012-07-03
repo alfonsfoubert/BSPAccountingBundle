@@ -46,6 +46,7 @@ class BSPAccountingExtension extends Extension
     
     protected function setTypes( $config, $container )
     {
+    	return;
     	if ($config['db_driver'] == 'mongodb')
     	{
 	    	if (false === \Doctrine\ODM\MongoDB\Mapping\Types\Type::hasType(\BSP\AccountingBundle\Type\MongoDB\ExtendedDataType::NAME)) {
