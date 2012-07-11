@@ -15,9 +15,11 @@ parameters:
     # Default ID Generator Handler
     bsp_accounting.default_handler.class: BSP\AccountingBundle\Handler\DefaultAccountHandler
 
+    # Manual ID Generator
+    bsp_accounting.manual_handler.class: BSP\AccountingBundle\Handler\ManualAccountHandler
+
     # Accounting Manipulator
     bsp_accounting.manipulator.class: BSP\AccountingBundle\Util\AccountingManipulator
-
 
 services:
 
@@ -40,6 +42,12 @@ services:
     # Default ID Generator Handler
     bsp_accounting.default_handler:
         class: %bsp_accounting.default_handler.class%
+        tags:
+            - { name: bsp_accounting.account_handler }
+    
+    # Manual ID Generator
+    bsp_accounting.manual_handler:
+        class: %bsp_accounting.manual_handler.class%
         tags:
             - { name: bsp_accounting.account_handler }
     

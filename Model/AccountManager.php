@@ -19,6 +19,7 @@ abstract class AccountManager implements AccountManagerInterface
 		$class = $this->getClass();
 		$account = new $class();
 		$account->setId( $this->accountIdProvider->generateId( $generator, $options ) );
+		$account->setStatus( \BSP\AccountingBundle\Model\AccountInterface::ACCOUNT_STATUS_ACTIVE );
 		return $account;
 	}
 	
@@ -27,6 +28,10 @@ abstract class AccountManager implements AccountManagerInterface
 		return $this->findAccountBy( array( 'id' => $id ) );
 	}
 	
+	public function findAccountByName( $name )
+	{
+	    return $this->findAccountBy( array( 'name' => $name ) );
+	}
 	
 	public function getIdGeneratorHandlers()
 	{

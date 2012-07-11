@@ -10,6 +10,7 @@ interface AccountManagerInterface
 	function createAccount( $generator = 'default', array $options = null );
 	function findAccountBy(array $criteria);
 	function findAccountById( $id );
+	function findAccountByName( $name );
 	function findAccounts();
 	function updateAccount( AccountInterface $account, $andFlush = true );
 	function balance( $account, $repository );
