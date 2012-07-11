@@ -30,6 +30,7 @@ class Configuration implements ConfigurationInterface
 					->end()
 				->end()
 				->scalarNode('secret')->isRequired()->cannotBeEmpty()->end()
+				->scalarNode('system_accounts')->end()
         	->end();
         
         $this->addAccountSection($rootNode);

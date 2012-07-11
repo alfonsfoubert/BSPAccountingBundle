@@ -12,7 +12,8 @@ class ManualAccountHandler extends AbstractAccountHandler
 	    {
 	        throw new \Exception( 'You need to specify the account ID' );
 	    }
-		return (string) $options[0];
+	    
+	    return isset( $options['id'] )? $options['id'] : array_pop($options);
 	}
 	
 	public function getType()

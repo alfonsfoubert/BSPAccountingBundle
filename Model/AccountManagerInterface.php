@@ -12,6 +12,7 @@ interface AccountManagerInterface
 	function findAccountById( $id );
 	function findAccountByName( $name );
 	function findAccounts();
+	function findSystemAccount( $account );
 	function updateAccount( AccountInterface $account, $andFlush = true );
 	function balance( $account, $repository );
 }

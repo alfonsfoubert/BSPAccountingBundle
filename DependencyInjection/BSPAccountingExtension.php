@@ -30,6 +30,10 @@ class BSPAccountingExtension extends Extension
         	$container->setParameter('bsp_accounting.encryption_service.secret', $config['secret']);
         }
         
+        if (isset($config['system_accounts'])) {
+            $container->setParameter('bsp_accounting.system_accounts', $config['system_accounts']);
+        }
+        
         $this->setTypes( $config, $container );
         
         if (isset($config['account'])) {

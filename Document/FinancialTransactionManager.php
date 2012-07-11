@@ -58,6 +58,10 @@ class FinancialTransactionManager extends AbstractFinancialTransacionManager
 	
 	public function checkTransactions()
 	{
-		// @todo Checks the sum of the all transactions made by Script
+		$transactions = $this->dm->createQueryBuilder( $this->class )
+                				 ->where('checkTransaction(this.accountingEntries) == false')
+                				 ->getQuery()
+                				 ->execute();
+		return $transactions;
 	}
 }

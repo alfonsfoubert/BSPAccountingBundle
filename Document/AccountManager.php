@@ -10,11 +10,10 @@ class AccountManager extends AbstractAccountManager
 	protected $dm;
 	protected $repository;
 	protected $class;
-	protected $transactionClass;
 	
-	public function __construct( $dm, $accountClass, $accountIdProvider )
+	public function __construct( $dm, $accountClass, $accountIdProvider, $systemAccountsFile )
 	{
-		parent::__construct( $accountIdProvider );
+		parent::__construct( $accountIdProvider, $systemAccountsFile );
 		
 		$this->dm = $dm;
 		$this->repository = $dm->getRepository($accountClass);
