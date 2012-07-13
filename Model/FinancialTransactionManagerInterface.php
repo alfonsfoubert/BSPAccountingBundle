@@ -10,6 +10,7 @@ interface FinancialTransactionManagerInterface
 	function getEntryClass();
 	function findTransactionBy(array $criteria);
 	function findTransactionById( $id );
+	function findTransactionByReference( $reference );
 	function findTransactions();
 	function findTransactionsByAccount( $account_id );
 	function findBy( array $criteria, array $orderBy = null, $limit = null, $offset = null );

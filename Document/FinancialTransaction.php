@@ -23,7 +23,7 @@ class FinancialTransaction extends BaseFinancialTransaction
 	/**
 	 * @MongoDB\String
 	 */
-	protected $referenceNumber;
+	protected $reference;
 	
 	/**
 	 * @MongoDB\Date

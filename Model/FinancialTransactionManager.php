@@ -12,6 +12,11 @@ abstract class FinancialTransactionManager implements FinancialTransactionManage
 		return $this->findTransactionBy( array( 'id' => $id ) );
 	}
 	
+	public function findTransactionByReference( $reference )
+	{
+	    return $this->findTransactionBy( array( 'reference' => $reference ) );
+	}
+	
 	public function findTransactionsByAccount( $account_id, array $orderBy = null, $limit = null, $offset = null )
 	{
 		return $this->findBy( array( 'account.$id' => $account_id ), $orderBy, $limit, $offset );

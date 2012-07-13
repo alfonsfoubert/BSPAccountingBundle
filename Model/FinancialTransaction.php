@@ -10,7 +10,7 @@ class FinancialTransaction implements FinancialTransactionInterface
 {
 	protected $id;
 	protected $state;
-	protected $referenceNumber;
+	protected $reference;
 	protected $createdAt;
 	protected $updatedAt;
 	protected $extendedData;
@@ -28,6 +28,11 @@ class FinancialTransaction implements FinancialTransactionInterface
 		return $this->id;
 	}
 
+	public function isOpen()
+	{
+	    return ($this->getState() == self::STATE_NEW || $this->getState() == self::STATE_PENDING );
+	}
+	
 	public function getState() 
 	{
 		return $this->state;
@@ -50,14 +55,14 @@ class FinancialTransaction implements FinancialTransactionInterface
 		$this->state = self::STATE_CANCELED;
 	}
 	
-	public function getReferenceNumber() 
+	public function getReference() 
 	{
-		return $this->referenceNumber;
+		return $this->reference;
 	}
 
-	public function setReferenceNumber( $referenceNumber ) 
+	public function setReference( $reference ) 
 	{
-		$this->referenceNumber = $referenceNumber;
+		$this->reference = $reference;
 	}
 
 	public function getCreatedAt() 
@@ -101,7 +106,8 @@ class FinancialTransaction implements FinancialTransactionInterface
 		return $this->extendedData;
 	}
 	
-	public function setExtendedData(ExtendedDataInterface $extendedData)
+	// public function setExtendedData(ExtendedDataInterface $extendedData)
+	public function setExtendedData($extendedData)
 	{
 		$this->extendedData = $extendedData;
 	}

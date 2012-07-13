@@ -4,10 +4,10 @@ namespace BSP\AccountingBundle\Model;
 
 interface AccountInterface
 {
-	const ACCOUNT_STATUS_PENDING  = 1;
-	const ACCOUNT_STATUS_ACTIVE   = 2;
-	const ACCOUNT_STATUS_CANCELED = 3;
-	const ACCOUNT_STATUS_BLOCKED  = 4;
+	const ACCOUNT_STATUS_PENDING  = 100;
+	const ACCOUNT_STATUS_ACTIVE   = 200;
+	const ACCOUNT_STATUS_CANCELED = 300;
+	const ACCOUNT_STATUS_BLOCKED  = 400;
 	
 	function getId();
 	function getName();

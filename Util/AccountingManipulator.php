@@ -13,7 +13,7 @@ class AccountingManipulator
 		$this->transactionManager = $transactionManager;
 	}
 	
-	public function createAccount( $generator, $options, $name, $units )
+	public function createAccount( $name, $units, $generator = 'default', array $options = null )
 	{
 		$account = $this->accountManager->createAccount( $generator, $options );
 		$account->setName( $name );
@@ -22,9 +22,19 @@ class AccountingManipulator
 		return $account;
 	}
 	
-	public function createTransaction()
+	public function createTransaction( $reference, $extendedData = null )
 	{
 		$transaction = $this->transactionManager->createTransaction();
+		
+		// Set the reference number
+	    $transaction->setReference( $reference );
+		
+		// Set the extended data
+		if ($extendedData !== null)
+		{
+		    $transaction->setExtendedData( $extendedData );
+		}
+		
 		$this->transactionManager->updateTransaction( $transaction );
 		return $transaction;
 	}
@@ -47,7 +57,7 @@ class AccountingManipulator
 	public function cancelTransaction( $transaction )
 	{
 		$transaction = $this->getTransaction( $transaction );
-		$transaction->cancel( $success );
+		$transaction->cancel();
 		$this->transactionManager->updateTransaction( $transaction );
 	}
 	
@@ -80,11 +90,22 @@ class AccountingManipulator
 		return $this->transactionManager->checkTransactions();
 	}
 	
-	protected function getTransaction( $transaction )
+	public function getSystemAccount( $account )
+	{
+	    return $this->accountManager->findSystemAccount( $account );
+	}
+	
+	public function getTransaction( $transaction )
 	{
 		if ( is_string($transaction) )
 		{
 			$ntransaction = $this->transactionManager->findTransactionById( $transaction );
+			
+			if ( ! $ntransaction)
+			{
+			    $ntransaction = $this->transactionManager->findTransactionByReference( $transaction );
+			}
+			
 			if ( ! $ntransaction)
 			{
 				throw new \Exception( 'Transaction ' . $transaction . ' not found' );
@@ -94,7 +115,7 @@ class AccountingManipulator
 		return $transaction;
 	}
 	
-	protected function getAccount( $account )
+	public function getAccount( $account )
 	{
 		if ( is_string($account) )
 		{

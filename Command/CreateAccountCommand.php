@@ -51,7 +51,7 @@ EOT
         $options   = $input->getArgument('options');
 
         $manipulator = $this->getContainer()->get('bsp_accounting.manipulator');
-        $account = $manipulator->createAccount( $generator, $options, $name, $units );        
+        $account = $manipulator->createAccount( $name, $units, $generator, $options );        
         $output->writeln(sprintf('Account <comment>%s</comment> created succesfully', $account->getId() ));
     }
 
