@@ -6,15 +6,15 @@ use BSP\AccountingBundle\Model\FinancialTransactionInterface;
 
 interface FinancialTransactionManagerInterface
 {
-	function getClass();
-	function getEntryClass();
-	function findTransactionBy(array $criteria);
-	function findTransactionById( $id );
-	function findTransactionByReference( $reference );
-	function findTransactions();
-	function findTransactionsByAccount( $account_id );
-	function findBy( array $criteria, array $orderBy = null, $limit = null, $offset = null );
-	function createTransaction();
-	function updateTransaction( FinancialTransactionInterface $transaction, $andFlush = true );
-	function checkTransactions();
+    public function getClass();
+    public function getEntryClass();
+    public function findTransactionBy(array $criteria);
+    public function findTransactionById( $id );
+    public function findTransactionByReference( $reference );
+    public function findTransactions();
+    public function findTransactionsByAccount( $account_id );
+    public function findBy( array $criteria, array $orderBy = null, $limit = null, $offset = null );
+    public function createTransaction();
+    public function updateTransaction( FinancialTransactionInterface $transaction, $andFlush = true );
+    public function checkTransactions();
 }

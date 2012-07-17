@@ -6,63 +6,62 @@ use BSP\AccountingBundle\Model\AccountInterface;
 
 class Account implements AccountInterface
 {
-	protected $id;
-	protected $name;
-	protected $status;
-	protected $createdAt;
-	protected $units;
-	
-	public function getId() 
-	{
-		return $this->id;
-	}
-	
-	public function setId( $id )
-	{
-		$this->id = $id;
-	}
+    protected $id;
+    protected $name;
+    protected $status;
+    protected $createdAt;
+    protected $units;
 
-	public function getName() 
-	{
-		return $this->name;
-	}
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	public function setName($name) 
-	{
-		$this->name = $name;
-	}
+    public function setId( $id )
+    {
+        $this->id = $id;
+    }
 
-	public function getStatus() 
-	{
-		return $this->status;
-	}
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	public function setStatus($status) 
-	{
-		$this->status = $status;
-	}
-	
-	public function setCreatedAt()
-	{
-		if (null === $this->createdAt)
-		{
-			$this->createdAt = new \DateTime();
-		}
-		$this->updatedAt = new \DateTime();
-	}
-	
-	public function getCreatedAt()
-	{
-		return $this->createdAt;
-	}
-	
-	public function getUnits()
-	{
-		return $this->units;
-	}
-	
-	public function setUnits($units)
-	{
-		$this->units = $units;
-	}
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    public function setCreatedAt()
+    {
+        if (null === $this->createdAt) {
+            $this->createdAt = new \DateTime();
+        }
+        $this->updatedAt = new \DateTime();
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function getUnits()
+    {
+        return $this->units;
+    }
+
+    public function setUnits($units)
+    {
+        $this->units = $units;
+    }
 }

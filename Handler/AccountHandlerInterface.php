@@ -4,6 +4,6 @@ namespace BSP\AccountingBundle\Handler;
 
 interface AccountHandlerInterface
 {
-	function getType();
-	function generateId( array $options = null );
+    public function getType();
+    public function generateId( array $options = null );
 }

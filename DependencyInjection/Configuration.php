@@ -22,32 +22,32 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('bsp_accounting');
 
         $rootNode
-	        ->children()
-	        	->scalarNode('db_driver')
-	        		->validate()
-						->ifNotInArray(array('mongodb'))
-						->thenInvalid('The %s driver is not supported')
-					->end()
-				->end()
-				->scalarNode('secret')->isRequired()->cannotBeEmpty()->end()
-				->scalarNode('system_accounts')->end()
-        	->end();
-        
+            ->children()
+                ->scalarNode('db_driver')
+                    ->validate()
+                        ->ifNotInArray(array('mongodb'))
+                        ->thenInvalid('The %s driver is not supported')
+                    ->end()
+                ->end()
+                ->scalarNode('secret')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('system_accounts')->end()
+            ->end();
+
         $this->addAccountSection($rootNode);
 
         return $treeBuilder;
     }
-    
+
     private function addAccountSection(ArrayNodeDefinition $node)
     {
-    	$node
-    		->children()
-    			->arrayNode('account')
-    				->children()
-    					->scalarNode('class')->end()
-    				->end()
-    			->end()
-    		->end()
-    	;
+        $node
+            ->children()
+                ->arrayNode('account')
+                    ->children()
+                        ->scalarNode('class')->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 }

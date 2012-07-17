@@ -9,46 +9,46 @@ use BSP\AccountingBundle\Model\FinancialTransaction as BaseFinancialTransaction;
  * @MongoDB\Document(collection="transactions")
  */
 class FinancialTransaction extends BaseFinancialTransaction
-{	
-	/**
-	 * @MongoDB\Id
-	 */
-	protected $id;
-	
-	/**
-	 * @MongoDB\Int
-	 */
-	protected $state;
-	
-	/**
-	 * @MongoDB\String
-	 */
-	protected $reference;
-	
-	/**
-	 * @MongoDB\Date
-	 */
-	protected $createdAt;
-	
-	/**
-	 * @MongoDB\Date
-	 */
-	protected $updatedAt;
-	
-	/**
-	 * @MongoDB\EmbedMany(targetDocument="BSP\AccountingBundle\Document\AccountingEntry")
-	 */
-	protected $accountingEntries;
-	
-	/** 
-	 * @MongoDB\Hash
-	 */
-	protected $extendedData;
-	
-	/** @MongoDB\PreUpdate */
-	public function preUpdateTransaction()
-	{
-		parent::incrementUpdatedAt();
-	}
-	
+{
+    /**
+     * @MongoDB\Id
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\Int
+     */
+    protected $state;
+
+    /**
+     * @MongoDB\String
+     */
+    protected $reference;
+
+    /**
+     * @MongoDB\Date
+     */
+    protected $createdAt;
+
+    /**
+     * @MongoDB\Date
+     */
+    protected $updatedAt;
+
+    /**
+     * @MongoDB\EmbedMany(targetDocument="BSP\AccountingBundle\Document\AccountingEntry")
+     */
+    protected $accountingEntries;
+
+    /**
+     * @MongoDB\Hash
+     */
+    protected $extendedData;
+
+    /** @MongoDB\PreUpdate */
+    public function preUpdateTransaction()
+    {
+        parent::incrementUpdatedAt();
+    }
+
 }

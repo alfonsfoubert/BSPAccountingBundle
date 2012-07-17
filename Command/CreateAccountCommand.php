@@ -4,10 +4,8 @@ namespace BSP\AccountingBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class CreateAccountCommand extends ContainerAwareCommand
 {
@@ -20,10 +18,10 @@ class CreateAccountCommand extends ContainerAwareCommand
             ->setName('bsp:account:create')
             ->setDescription('Create an account.')
             ->setDefinition(array(
-            	new InputArgument('name', InputArgument::REQUIRED, 'The name'),
-            	new InputArgument('units', InputArgument::REQUIRED, 'The units'),
+                new InputArgument('name', InputArgument::REQUIRED, 'The name'),
+                new InputArgument('units', InputArgument::REQUIRED, 'The units'),
                 new InputArgument('generator', InputArgument::REQUIRED, 'The id generator of the account'),
-            	new InputArgument('options', InputArgument::OPTIONAL, 'Options for the generator'),
+                new InputArgument('options', InputArgument::OPTIONAL, 'Options for the generator'),
             ))
             ->setHelp(<<<EOT
 The <info>bsp:account:create</info> command creates an account:
@@ -51,7 +49,7 @@ EOT
         $options   = $input->getArgument('options');
 
         $manipulator = $this->getContainer()->get('bsp_accounting.manipulator');
-        $account = $manipulator->createAccount( $name, $units, $generator, $options );        
+        $account = $manipulator->createAccount( $name, $units, $generator, $options );
         $output->writeln(sprintf('Account <comment>%s</comment> created succesfully', $account->getId() ));
     }
 
@@ -64,8 +62,7 @@ EOT
             $name = $this->getHelper('dialog')->askAndValidate(
                 $output,
                 'Please choose a name: ',
-                function($name)
-                {
+                function($name) {
                     if (empty($name)) {
                         throw new \Exception('Name can not be empty');
                     }
@@ -75,51 +72,51 @@ EOT
             );
             $input->setArgument('name', $name);
         }
-        
+
         if (!$input->getArgument('units')) {
-        	$units = $this->getHelper('dialog')->askAndValidate(
-        			$output,
-        			'Please choose the units: ',
-        			function($units)
-        			{
-        				if (empty($units)) {
-        					throw new \Exception('Units can not be empty');
-        				}
-        				return $units;
-        			}
-        			);
-        			$input->setArgument('units', $units);
+            $units = $this->getHelper('dialog')->askAndValidate(
+                    $output,
+                    'Please choose the units: ',
+                    function($units) {
+                        if (empty($units)) {
+                            throw new \Exception('Units can not be empty');
+                        }
+
+                        return $units;
+                    }
+                    );
+                    $input->setArgument('units', $units);
         }
-        
+
         if (!$input->getArgument('generator')) {
-        	$accountManager = $this->getContainer()->get('bsp_accounting.account_manager');
+            $accountManager = $this->getContainer()->get('bsp_accounting.account_manager');
             $generator = $this->getHelper('dialog')->askAndValidate(
                 $output,
                 'Please choose a generator [' . implode( ",", $accountManager->getIdGeneratorHandlers() ) . ']: ',
-                function($generator)
-                {
+                function($generator) {
                     if (empty($generator)) {
                         $generator = 'default';
                     }
+
                     return $generator;
                 }
             );
             $input->setArgument('generator', $generator);
         }
-        
+
         if (!$input->getArgument('options')) {
-        	$options = $this->getHelper('dialog')->askAndValidate(
-        			$output,
-        			'Please specify the options coma separated: ',
-        			function($options)
-        			{
-        				if (empty($options)) {
-        					$options = '';
-        				}
-        				return explode( ',', $options );
-        			}
-        			);
-        			$input->setArgument('options', $options);
+            $options = $this->getHelper('dialog')->askAndValidate(
+                    $output,
+                    'Please specify the options coma separated: ',
+                    function($options) {
+                        if (empty($options)) {
+                            $options = '';
+                        }
+
+                        return explode( ',', $options );
+                    }
+                    );
+                    $input->setArgument('options', $options);
         }
     }
 }

@@ -6,6 +6,6 @@ use BSP\AccountingBundle\Handler\AccountHandlerInterface;
 
 interface AccountProviderInterface
 {
-	function addAccountHandler(AccountHandlerInterface $handler);
-	function listAccountHandlers();
+    public function addAccountHandler(AccountHandlerInterface $handler);
+    public function listAccountHandlers();
 }

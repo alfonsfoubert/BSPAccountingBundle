@@ -10,35 +10,35 @@ use BSP\AccountingBundle\Model\Account as BaseAccount;
  */
 class Account extends BaseAccount
 {
-	/**
-	 * @MongoDB\Id(strategy="none")
-	 */
-	protected $id;
-	
-	/**
-	 * @MongoDB\String
-	 */
-	protected $name;
-	
-	/**
-	 * @MongoDB\Int
-	 */
-	protected $status;
-	
-	/**
-	 * @MongoDB\String
-	 */
-	protected $units;
-	
-	/**
-	 * @MongoDB\Date
-	 */
-	protected $createdAt;
-	
-	/** @MongoDB\PrePersist */
-	public function prePersistAccount()
-	{
-		parent::setCreatedAt();
-	}
-	
+    /**
+     * @MongoDB\Id(strategy="none")
+     */
+    protected $id;
+
+    /**
+     * @MongoDB\String
+     */
+    protected $name;
+
+    /**
+     * @MongoDB\Int
+     */
+    protected $status;
+
+    /**
+     * @MongoDB\String
+     */
+    protected $units;
+
+    /**
+     * @MongoDB\Date
+     */
+    protected $createdAt;
+
+    /** @MongoDB\PrePersist */
+    public function prePersistAccount()
+    {
+        parent::setCreatedAt();
+    }
+
 }

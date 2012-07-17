@@ -2,17 +2,15 @@
 
 namespace BSP\AccountingBundle\Model;
 
-use BSP\AccountingBundle\Model\AccountingInterface;
-
 interface AccountManagerInterface
 {
-	function getClass();
-	function createAccount( $generator = 'default', array $options = null );
-	function findAccountBy(array $criteria);
-	function findAccountById( $id );
-	function findAccountByName( $name );
-	function findAccounts();
-	function findSystemAccount( $account );
-	function updateAccount( AccountInterface $account, $andFlush = true );
-	function balance( $account, $repository );
+    public function getClass();
+    public function createAccount( $generator = 'default', array $options = null );
+    public function findAccountBy(array $criteria);
+    public function findAccountById( $id );
+    public function findAccountByName( $name );
+    public function findAccounts();
+    public function findSystemAccount( $account );
+    public function updateAccount( AccountInterface $account, $andFlush = true );
+    public function balance( $account, $repository );
 }

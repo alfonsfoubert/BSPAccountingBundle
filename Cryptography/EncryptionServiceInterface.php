@@ -12,7 +12,7 @@ interface EncryptionServiceInterface
      *
      * @param string $encryptedValue
      */
-    function decrypt($encryptedValue);
+    public function decrypt($encryptedValue);
 
     /**
      * This method encrypts the passed value.
@@ -21,5 +21,5 @@ interface EncryptionServiceInterface
      *
      * @param string $rawValue
      */
-    function encrypt($rawValue);
+    public function encrypt($rawValue);
 }

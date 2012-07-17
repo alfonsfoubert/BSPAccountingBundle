@@ -3,7 +3,7 @@ parameters:
     bsp_accounting.account.class: BSP\AccountingBundle\Document\Account
     bsp_accounting.account_manager.class: BSP\AccountingBundle\Document\AccountManager
     bsp_accounting.system_accounts: ~
-    
+
     # Financial Transaction
     bsp_accounting.financial_transaction.class: BSP\AccountingBundle\Document\FinancialTransaction
     bsp_accounting.financial_transaction_manager.class: BSP\AccountingBundle\Document\FinancialTransactionManager

@@ -12,19 +12,19 @@ interface FinancialTransactionInterface
     const STATE_PENDING  = 400;
     const STATE_SUCCESS  = 500;
 
-    function getId();
-    function incrementUpdatedAt();
-    function isOpen();
-    function getState();
-    function setState($state);
-    function getReference();
-    function setReference($reference);
-    function getCreatedAt();
-    function getUpdatedAt();
-    function getAccountingEntries();
-    function setAccountingEntries($accountingEntries);
-    function addAcountingEntry( $accountingEntry );
-    function getExtendedData();
+    public function getId();
+    public function incrementUpdatedAt();
+    public function isOpen();
+    public function getState();
+    public function setState($state);
+    public function getReference();
+    public function setReference($reference);
+    public function getCreatedAt();
+    public function getUpdatedAt();
+    public function getAccountingEntries();
+    public function setAccountingEntries($accountingEntries);
+    public function addAcountingEntry( $accountingEntry );
+    public function getExtendedData();
     // function setExtendedData( ExtendedDataInterface $extendedData );
-    function setExtendedData( $extendedData );
+    public function setExtendedData( $extendedData );
 }

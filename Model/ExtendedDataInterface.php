@@ -2,13 +2,12 @@
 
 namespace BSP\AccountingBundle\Model;
 
-
 interface ExtendedDataInterface
 {
-    function isEncryptionRequired($name);
-    function remove($name);
-    function set($name, $value, $encrypt = true);
-    function get($name);
-    function all();
-    function equals(ExtendedDataInterface $data);
+    public function isEncryptionRequired($name);
+    public function remove($name);
+    public function set($name, $value, $encrypt = true);
+    public function get($name);
+    public function all();
+    public function equals(ExtendedDataInterface $data);
 }

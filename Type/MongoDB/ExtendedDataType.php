@@ -3,7 +3,6 @@
 namespace BSP\AccountingBundle\Type\MongoDB;
 
 use BSP\AccountingBundle\Cryptography\EncryptionServiceInterface;
-use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\ODM\MongoDB\Mapping\Types\Type;
 
@@ -53,7 +52,7 @@ class ExtendedDataType extends Type
 
         if (null === $data) {
             return null;
-        } else if (is_array($data)) {
+        } elseif (is_array($data)) {
             foreach ($data as $name => $value) {
                 if (true === $value[1]) {
                     $data[$name][0] = unserialize(self::$encryptionService->decrypt($value[0]));
