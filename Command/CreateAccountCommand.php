@@ -15,7 +15,7 @@ class CreateAccountCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('bsp:account:create')
+            ->setName('bsp:accounting:create')
             ->setDescription('Create an account.')
             ->setDefinition(array(
                 new InputArgument('name', InputArgument::REQUIRED, 'The name'),

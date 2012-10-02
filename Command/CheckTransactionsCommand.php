@@ -11,7 +11,7 @@ class CheckTransactionsCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-        ->setName('bsp:account:check:transactions')
+        ->setName('bsp:accounting:check:transactions')
         ->setDescription('Checks for the incorrect transactions')
         ;
     }

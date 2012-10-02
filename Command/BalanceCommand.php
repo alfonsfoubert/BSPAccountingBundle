@@ -12,7 +12,7 @@ class BalanceCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-        ->setName('bsp:account:balance')
+        ->setName('bsp:accounting:balance')
         ->setDescription('Get the Balance')
         ->addArgument('account', InputArgument::REQUIRED, 'Which account do you want to query?')
         ;
