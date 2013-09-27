@@ -1,0 +1,35 @@
+{
+    "name": "d3r3ck/bsp-accounting-bundle",
+    "type": "symfony-bundle",
+    "description": "Double-entry accounting bundle for Symfony2",
+    "keywords": ["accounting", "double-entry", "symfony2", "bundle", "bsp"],
+    "homepage": "https://github.com/D3r3ck/BSPAccountingBundle",
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Alfons Foubert",
+            "homepage": "http://alfonsfoubert.com",
+            "email" : "afons.foubert@gmail.com"
+        }
+    ],
+
+    "require": {
+        "php":                      ">=5.3.3",
+        "symfony/framework-bundle": "~2.0"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "BSP\\AccountingBundle": ""
+        }
+    },
+
+    "target-dir": "BSP/AccountingBundle",
+    
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
