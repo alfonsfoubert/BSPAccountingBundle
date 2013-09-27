@@ -64,9 +64,9 @@ class AccountingManipulator
     }
 
     // Throws Exception //
-    public function addAccountingEntry( $transaction, $account,
-                                          $type, $amount,
-                                          $trackingId = null, $description = null )
+    public function addAccountingEntry( $transaction,       $account,
+                                        $type,              $amount,
+                                        $trackingId = null, $description = null )
     {
         // Getting the objects
         $transaction = $this->getTransaction( $transaction );
@@ -78,7 +78,7 @@ class AccountingManipulator
         $entry->setAccount( $account );
         $entry->setTransactionType( $type );
         $entry->setAmount( $amount );
-        if ( $trackingId ) $entry->setTrackingId( $trackingId );
+        if ( $trackingId )  $entry->setTrackingId( $trackingId );
         if ( $description ) $entry->setDescription( $description );
 
         // Adding Entry

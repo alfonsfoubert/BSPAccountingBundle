@@ -15,10 +15,10 @@ class AccountManager extends AbstractAccountManager
     {
         parent::__construct( $accountIdProvider, $systemAccountsFile );
 
-        $this->dm = $dm;
+        $this->dm         = $dm;
         $this->repository = $dm->getRepository($accountClass);
-        $metadata = $dm->getClassMetadata($accountClass);
-        $this->class = $metadata->name;
+        $metadata         = $dm->getClassMetadata($accountClass);
+        $this->class      = $metadata->name;
     }
 
     public function findAccountBy( array $criteria  )
