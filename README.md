@@ -90,7 +90,7 @@ $manipulator->createAccount( 'My Account', 'EUR', 'mongodb' );
 and
 
 ``` php
-$manipulator->createAccount( 'My Account', 'EUR', 'manual', array( 'id' => 'ABC3004562002' ) );
+$manipulator->createAccount( 'My Account', 'EUR', 'manual', array( 'id' => 'ABC30045' ) );
 ```
 
 ### Create a transaction
